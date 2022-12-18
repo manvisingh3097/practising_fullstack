@@ -140,7 +140,8 @@ footer
 }
 
 footer a{
-    margin-right: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .faa-link:hover{
     color: #6fb3f7;

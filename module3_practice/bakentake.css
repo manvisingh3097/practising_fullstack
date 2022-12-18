@@ -1,0 +1,168 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter' , cursive;
+}
+
+.header{
+   
+    
+
+    padding: 0px;
+    height: 80px;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+.header-logo{
+    width: 52px;
+    height: 52px;
+    left: 50px;
+    top: 0px;
+    
+    gap: none;
+}
+.Logo-name{
+
+font-family: 'Times';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 24px;
+}
+.logo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-right: 40%;
+
+}
+
+ul{
+    list-style-type: none;
+    
+}
+.nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.nav-link{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #EAEFF0;
+
+}
+#login-button{
+    font-weight: 500;
+    background-color: transparent;
+    color: #EAEFF0;
+    font-size: 20px;
+    cursor: pointer;
+}
+#signup-button
+{
+    background : color #69a799;
+    width: 120px;
+    height: 48px;
+    padding: 12px 24px;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+    
+}
+.main{
+    display: flex;
+}
+.left-main{
+    flex-basis: 55%;
+    margin-top: 10px;
+    padding: 50px 0 0 40px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+
+}
+.right-main{
+    flex-basis: 55%;
+    margin-bottom: 10px;
+    position: absolute;
+    width: 720px;
+    height: 815px;
+    left: 720px;
+    top: 80px;
+}
+
+.hero-image
+{
+height: 100%;
+}
+
+.left-main>*
+{
+margin-bottom: 30px;
+}
+
+.left-main h1
+{
+color: #69A799;
+font-weight: 900;
+font-size: 50px;
+}
+
+.left-main h2
+{
+color: #FF9191;
+font-size: 56px;
+font-family: 'Dancing Script', cursive;
+}
+
+.left-main p > 
+{
+line-height: 25px;
+}
+#explore-now-button
+{
+border-radius: 20px;
+padding: 20px 40px 20px 40px;
+background: #69A799;
+color: white;
+outline: none;
+font-weight: 700;
+cursor: pointer;
+font-size: 20px;
+box-shadow: 10px 10px 11px -7px rgb(168,161,168,);
+}
+#order-now-button{
+    outline: none;
+    border: none;
+    color: black;
+    border-radius: 20px;
+    padding: 20px 40px 20px 40px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 10px 10px 11px -7px rgb(19, 8, 19);
+}
+.alt-section{
+display: flex;
+padding: 0 0 0 40px;
+background-color: #EAEFF0;
+}
+.form-section{
+    flex-basis: 55%;
+    margin-top: 30px ;
+}
+
+
