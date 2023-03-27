@@ -57,11 +57,16 @@ loginform.addEventListener("submit" , (event)=>{
 
     const errors = validate(formValues);
     console.log(errors);
-    nameError.innerHTML=errors.name|| "";
-    emailerror.innerHTML=errors.email|| "";
-    Passworderror.innerHTML=errors.pass|| "";
-    confirmPassworderror.innerHTML=errors.confirmpass|| "";
+    if (Object.keys(errors).length >0) {
+        nameError.innerHTML=errors.name|| "";
+        emailerror.innerHTML=errors.email|| "";
+        Passworderror.innerHTML=errors.pass|| "";
+        confirmPassworderror.innerHTML=errors.confirmpass|| "";
+    }
+    else{
+        window.location = "signup.html" ;
+    }
 
-    
-})
+    }
+)
 
