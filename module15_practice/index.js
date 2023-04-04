@@ -1,21 +1,26 @@
-k=[]
-class stack {
-    constructor(arrk) {
-        this.items=[];
+class MovieCast {
+    constructor() {
+      this.castStack = [];
     }
-    add(element){
-        this.arrk.push(element)
-        return this.items.push(element);
+  
+    // Add a new cast member to the stack
+    addCastMember(name) {
+      this.castStack.push(name);
     }
-} 
-
-
-manvi_stack = new stack()
-harsha_stack = new stack()
-
-
-manvi_stack.add(2)
-harsha_stack.add(3)
-
-console.log(manvi_stack.items)
-console.log(harsha_stack.items)
+  
+    // Display all names stored in the stack
+    showCast() {
+      console.log("Movie Cast:");
+      for (let i = this.castStack.length - 1; i >= 0; i--) {
+        console.log(this.castStack[i]);
+      }
+    }
+  }
+  
+  // Example usage
+  const cast = new MovieCast();
+  cast.addCastMember("Tom Hanks");
+  cast.addCastMember("Emma Watson");
+  cast.addCastMember("Dwayne Johnson");
+  cast.showCast();
+  
