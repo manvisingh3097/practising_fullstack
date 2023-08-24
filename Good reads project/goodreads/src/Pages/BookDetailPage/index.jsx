@@ -1,16 +1,15 @@
 import React, {useEffect , useState} from "react";
-import BookData from "../Data/book";
+import BookData from "../Data/Book";
 import BookDetail from "./components/BookDetail";
 import Navbar from "./components/Navbar";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const BookDetailPage = () => {
-    const {id} = useParams()
     const [Book, SetBook] = useState({});
 
     useEffect(()=> {
-        SetBook(BookData[id]);
-    })
+        SetBook(BookData[0]);
+    });
 
     return(
         <>
