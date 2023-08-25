@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BookData from "../../Data/book";
+import BookData from "../../data/book";
 import Book from "./Book";
 
 const BookList = () => {
