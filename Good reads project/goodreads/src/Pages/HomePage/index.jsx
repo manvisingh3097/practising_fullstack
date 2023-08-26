@@ -1,16 +1,14 @@
-import Navbar from "../../components/Navbar";
-import Header from "../../components/Header";
 import CategoryList from "../../components/CategoryList";
-
+import Header from "../../components/Header";
+import Navbar from "../../components/Navbar";
 
 const HomePage = () => {
-    return(
+  return (
     <div>
-        <Navbar/>
-        <Header/>
-        <CategoryList/>
+      <Navbar />
+      <Header />
+      <CategoryList />
     </div>
-    )
-}
-
+  );
+};
 export default HomePage;

@@ -1,22 +1,20 @@
-import React, {useEffect , useState} from "react";
-import BookData from "../data/book";
-import BookDetail from "./components/BookDetail";
-import Navbar from "./components/Navbar";
-// import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import BookData from "../../data/book";
+import BookDetail from "../../components/BookDetail";
+import Navbar from "../../components/Navbar";
 
 const BookDetailPage = () => {
-    const [book, SetBook] = useState({});
+  const [book, setBook] = useState({});
 
-    useEffect(()=> {
-        SetBook(BookData[0]);
-    });
+  useEffect(() => {
+    setBook(BookData[0]);
+  });
 
-    return(
-        <>
-        <Navbar/>
-        <BookDetail data={book}/>
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <BookDetail data={book} />
+    </>
+  );
 };
-
 export default BookDetailPage;

@@ -1,4 +1,3 @@
-import React from "react";
 import Category from "./Category";
 
 const CategoryList = () => {
@@ -26,7 +25,7 @@ const CategoryList = () => {
   ];
   return (
     <div className="container">
-      <h1 className="text-center"> All Categories </h1>
+      <h1 className="text-center">All Categories</h1>
       <div className="row">
         {items.map((category, index) => (
           <Category data={category} key={index} />
@@ -35,5 +34,4 @@ const CategoryList = () => {
     </div>
   );
 };
-
 export default CategoryList;
