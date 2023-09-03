@@ -1,9 +1,28 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (!token) {
+      setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="#">
+      <Link className="navbar-brand" href="#">
         GoodReads
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -19,36 +38,39 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home{" "}
-            </a>
+            <Link className="nav-link" to="/home">
+              Home
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/books">
               Books
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/about">
               About
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/contact">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0">
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+        <div className="form-inline my-2 my-lg-0">
+          {loggedIn ? (
+            <Link className="btn btn-danger" onClick={logoutHandler}>
+              Logout
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary">
+              Logout
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
