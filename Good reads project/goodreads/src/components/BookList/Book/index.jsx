@@ -9,7 +9,7 @@ const Book = (props) => {
         <img src={image} alt="" className="card-image-top" />
         <div className="card-body">
           <div className="card-title">{title}</div>
-          <Link to={'/books/etail/'+ id} className="btn btn-dark btn-block">
+          <Link to={'/books/detail/'+ id} className="btn btn-dark btn-block">
             Show Details
           </Link>
         </div>
