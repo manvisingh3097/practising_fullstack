@@ -3,23 +3,23 @@ import BookData from "../../data/book";
 import BookDetail from "../../components/BookDetail";
 import Navbar from "../../components/Navbar";
 import { useParams } from "react-router-dom";
-import { useDispatch , useSelector } from "react-redux";
-import { addBook, removeBook } from "../../redux/actions/book.action";
+import { useDispatch, useSelector } from "react-redux";
+import { addBook, removeBook } from "../../redux/actions/book-action";
 
 const BookDetailPage = () => {
 
   const dispatch = useDispatch()
   const book = useSelector(state => state.book)
 
-    const {id} = useParams()
-  // const [book, setBook] = useState({});
+  const {id} = useParams()
+  //const [book, setBook] = useState({});
 
   useEffect(() => {
-    // setBook(BookData[id]);
+    //setBook(BookData[id]);
     dispatch(addBook(BookData[id]));
 
-    return() => {
-      dispatch(removeBook)
+    return () => {
+      dispatch(removeBook())
     }
   }, []);
 

@@ -1,162 +1,119 @@
-import { Link } from "react-router-dom";
-import styles from "./style.module.css";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom"
+import styles from './style.module.css'
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
 import axios from "axios";
-import React , {useState} from 'react';
+
 
 const RegisterPage = () => {
-
-    const[requestResponse , setRequestResponse] = useState({
+    const [ requestResponse, setRequestResponse ] = useState({
         textMessage: '',
-        alertClass: ''
+        alertClass : ''
     })
 
-  const initialValues = {
-    firstname: "",
-    email: "",
-    password: "",
-    mobile: "",
-  };
+    const initialValues = {
+        firstName: '',
+        email: '',
+        mobile: '',
+        password: ''
+    }
 
-  const onSubmit = (values) => {
-    // console.log(values);
-    axios
-      .post(
-        "https://orca-app-jhg4l.ondigitalocean.app/api/auth/register",
-        values
-      )
-      .then((response) => {
-        // console.log(response.data);
-        setRequestResponse({
-            textMessage : response.data.message,
-            alertClass: 'alert alert-success'
+    const onSubmit = (values) => {
+        //console.log(values)
+        axios.post('https://orca-app-jhg4l.ondigitalocean.app/api/auth/register', values)
+        .then((response) => {
+            console.log(response.data)
+            setRequestResponse({
+                textMessage: response.data.message,
+                alertClass: 'alert alert-success'
+            })
+        }, (error) => {
+            console.log(error)
+            setRequestResponse({
+                textMessage: error.response.data.message,
+                alertClass: 'alert alert-danger'
+            })
         })
-      }, (error) => {
-        console.log(error);
-        
-      })
-      .catch(error => console.log(error));
-  };
+        .catch(error => console.log(error))
+    }
 
-  const ValidationSchema = Yup.object({
-    firstname: Yup.string().required("first name is reaquired"),
-    email: Yup.string()
-      .required("email name is reaquired")
-      .email("email should be a valid email"),
-    password: Yup.string().required("password name is reaquired"),
-    mobile: Yup.string()
-      .required("mobile name is reaquired")
-      .min(6, "password must be 6 characters long"),
-  });
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required('first name is required'),
+        email: Yup.string().required('email is required').email('email should be a valid email'),
+        mobile: Yup.string().required('mobile is required'),
+        password: Yup.string().required('password is required').min(6, 'password must be 6 character long')
+    })
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    ValidationSchema,
-    validateOnChange: true,
-  });
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema,
+        validateOnMount: true
+    })
 
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-3"></div>
-        <div className="col-md-6">
-          <div className={styles.wrapper}>
-            <h2>Register</h2>
-            <hr />
-            <form onSubmit={formik.handleBlur}>
-              <div className="form-group">
-                <label htmlFor="firstname">First Name</label>
-                <input
-                  type="text"
-                  name="firstname"
-                  values={formik.values.firstname}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  id="firstname"
-                  className={
-                    formik.touched.firstname && formik.errors.firstname
-                      ? "form-control is-invalid"
-                      : "form-control"
-                  }
-                />
-                {formik.errors.firstname && formik.touched.firstname ? (
-                  <small className="text-danger">
-                    {formik.errors.firstname}
-                  </small>
-                ) : null}
-              </div>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                    <div className={styles.wrapper}>
+                    <div className={ requestResponse.alertClass }>
+                { requestResponse.textMessage }
+            </div>
+                        <h2>Register</h2>
+                        <hr />
 
-              <div className="form-group">
-                <label htmlFor="email">Email </label>
-                <input
-                  type="text"
-                  name="email"
-                  values={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  onBlur={formik.handleBlur}
-                  id="email"
-                  className={
-                    formik.touched.email && formik.errors.email
-                      ? "form-control is-invalid"
-                      : "form-control"
-                  }
-                />
-                {formik.errors.email && formik.touched.email ? (
-                  <small className="text-danger">{formik.errors.email}</small>
-                ) : null}
-              </div>
+                        <form onSubmit={formik.handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="firstName">First Name</label>
+                                <input type="text" name="firstName"
+                                    values={formik.values.firstName}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur} id="firstName"
+                                    className={formik.touched.firstName && formik.errors.firstName ? 'form-control is-invalid' : 'form-control'} />
+                                {formik.errors.firstName && formik.touched.firstName ? (<small className="text-danger">{formik.errors.firstName}</small>) : null}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password </label>
-                <input
-                  type="text"
-                  name="email"
-                  values={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  onBlur={formik.handleBlur}
-                  id="password"
-                  className={
-                    formik.touched.password && formik.errors.password
-                      ? "form-control is-invalid"
-                      : "form-control"
-                  }
-                />
-                {formik.errors.password && formik.touched.password ? (
-                  <small className="text-danger">
-                    {formik.errors.password}
-                  </small>
-                ) : null}
-              </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input type="text" name="email" id="email"
+                                    className={formik.touched.email && formik.errors.email ? 'form-control is-invalid' : 'form-control'}
+                                    values={formik.values.email}
+                                    onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                {formik.errors.email && formik.touched.email ? (<small className="text-danger">{formik.errors.email}</small>) : null}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="mobile">Mobile </label>
-                <input
-                  type="text"
-                  name="mobile"
-                  values={formik.values.mobile}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  onBlur={formik.handleBlur}
-                  id="mobile"
-                  className={
-                    formik.touched.Mobile && formik.errors.Mobile
-                      ? "form-control is-invalid"
-                      : "form-control"
-                  }
-                />
-                {formik.errors.mobile && formik.touched.mobile ? (
-                  <small className="text-danger">{formik.errors.mobile}</small>
-                ) : null}
-              </div>
-            </form>
-          </div>
+                            <div className="form-group">
+                                <label htmlFor="mobile">Mobile</label>
+                                <input type="text" name="mobile" id="mobile"
+                                    className={formik.touched.mobile && formik.errors.mobile ? 'form-control is-invalid' : 'form-control'}
+                                    values={formik.values.mobile}
+                                    onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                {formik.errors.mobile && formik.touched.mobile ? (<small className="text-danger">{formik.errors.mobile}</small>) : null}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input type="password" name="password" id="password"
+                                    className={formik.touched.password && formik.errors.password ? 'form-control is-invalid' : 'form-control'}
+                                    values={formik.values.password}
+                                    onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                {formik.errors.password && formik.touched.password ? (<small className="text-danger">{formik.errors.password}</small>) : null}
+                            </div>
+
+                            <input type="submit" value="Register" className="btn btn-primary btn-block" disabled={!formik.isValid} />
+                        </form>
+                        <br />
+                        <p className="text-center">
+                            Already Registered ? <Link to="/login">Click Here</Link>
+                        </p>
+                    </div>
+                </div>
+                <div className="col-md-3"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
-};
+    )
+}
+
 export default RegisterPage;

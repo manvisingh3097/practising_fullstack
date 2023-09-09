@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" href="#">
+      <Link className="navbar-brand" to="/">
         GoodReads
       </Link>
       <button
@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/home">
+            <Link className="nav-link" to="/">
               Home
             </Link>
           </li>
@@ -67,7 +67,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <Link to="/login" className="btn btn-primary">
-              Logout
+              Login
             </Link>
           )}
         </div>
