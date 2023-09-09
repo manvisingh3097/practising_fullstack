@@ -11,6 +11,14 @@ export const bookReducer = (state = initialState, { type, payload }) => {
         ...state,
         books: payload,
       };
+
+      case ActionTypes.FETCH_BOOKS:
+      return {
+        ...state,
+        books: payload,
+      };
+
+
     default:
       return state; 
   }

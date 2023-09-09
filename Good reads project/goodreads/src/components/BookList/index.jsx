@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BookData from "../../data/book";
 import Book from "./Book";
 import {useDispatch , useSelector} from "react-redux";
-import { setBooks } from '../../redux/actions/book.action';
+import { fetchBooks, setBooks } from '../../redux/actions/book.action';
 
 const BookList = () => {
   // const [books, setBooks] = useState([]);
@@ -12,7 +12,8 @@ const BookList = () => {
 
   useEffect(() => {
     // setBooks(BookData);
-    dispatch(setBooks(BookData));
+    // dispatch(setBooks(BookData));
+    dispatch(fetchBooks())
   }, []);
 
   return (
