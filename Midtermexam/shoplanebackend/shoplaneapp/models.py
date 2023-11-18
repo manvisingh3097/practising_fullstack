@@ -10,9 +10,8 @@ class category(models.Model):
 class Product(models.Model):
     category_id = models.IntegerField()
     name = models.CharField(max_length=200)
-    price = models.FloatField(max_length=200)
+    price = models.FloatField()
     Description = models.TextField(null=True , blank=True,default=None)
-    category = models.CharField()
-    image = models.URLField(null=True , blank=True)
-    rating = models.IntegerField()   
+    image = models.URLField(null=True , blank=True , default=None)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

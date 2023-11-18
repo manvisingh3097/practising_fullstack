@@ -1,3 +1,5 @@
+
+
 """
 URL configuration for shoplanebackend project.
 
@@ -19,6 +21,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include("shoplaneapp.urls")),
+    path('api/', include("shoplaneapp.urls"))
 
 ]
