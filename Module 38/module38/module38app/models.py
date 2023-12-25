@@ -13,32 +13,40 @@ class User(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User , on_delete= models.CASCADE, related_name="orders")
     order_number = models.IntegerField(max_length=200)
-    order_date = models.DateField(auto_add_now=True)
+    order_date = models.DateField(auto_now_add=True)
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
-    image = models.URLField(null=True  blank=True)
-    shipping = models.CharField(max_length=200 ,null=True default=None)
+    image = models.URLField(null=True , blank=True , default=None)
+    shipping = models.CharField(max_length=200 ,null=True , default=None)
     Description = models.TextField()
     price = models.FloatField(max_digits=6, decimal_places=2)
     category = models.CharField(max_length=30)
     Brand = models.CharField(max_length=True)
     featured = models.CharField(default=True)
-    active = models
-
+    active = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
 
 
 class Orderitem(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, null=False)
-    quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    order = models.ForeignKey(Order, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_item")
+    quantity = models.IntegerField(default=1)
+    price = models.FloatField(max_digits=5, decimal_places=2)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE , related_name="order_item")
 
 class Review(models.Model):
-    rate = models.SmallIntegerField()
-    review = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
-    Product = models.CharField()
-    Created_at = models.DateField()
-    active = models.DateField()
+    Product = models.ForeignKey(Product, on_delete= models.CASCADE, related_name="product_review")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_review")
+    rate = models.IntegerField()
+    review = models.TextField() 
+    created = models.DateField(auto_now_add=True)
 
+class BillingAddress(models.Model):
+    order=models.OneToOneField(Order, on_delete= models.CASCADE, related_name="billing")
+    address = models.TextField()
+    city = models.CharField(max_length=200)
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=8)
+    discount = models.IntegerField(Order)
+    order = models.ManyToManyField(Order)
