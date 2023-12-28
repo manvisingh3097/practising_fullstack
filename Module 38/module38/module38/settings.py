@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'module38app',
 
 ]
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'module38.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'module38_db',
+        'NAME': 'BE6-module38',
     }
 }
 

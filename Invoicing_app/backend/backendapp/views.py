@@ -1,8 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_Permissions import IsAuthenticated
 from .serializers import *
 from .data import *
-import jwt
 
 # Create your views here.
 
@@ -24,3 +25,6 @@ class LoginView(APIView):
                 token = jwt.encode({"test": "this is jwt testing"}, "secret", algorithm="HS256")
                 return Response ({"message": "Login success.", "token": str(token)}, status=200)
         return Response({"message": "Email or password does not match"}, status=401)
+    
+    class InvoiceView(APIView):
+        Permission_classes = []
