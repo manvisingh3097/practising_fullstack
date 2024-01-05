@@ -19,13 +19,20 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     image = models.URLField(null=True , blank=True , default=None)
     shipping = models.CharField(max_length=200 ,null=True , default=None)
-    Description = models.TextField(max_length=200)
+    description = models.TextField(max_length=200)
     price = models.FloatField()
     category = models.CharField(max_length=300)
-    Brand = models.CharField(max_length=200)
+    brand = models.CharField(max_length=200)
     featured = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
+    avg_review = models.FloatField(default=0.00)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['name'], name='name-index'),
+            models.Index(fields=['category', 'brand'], name='cat-brand-index'),
+            ]
 
 
 class Orderitem(models.Model):
