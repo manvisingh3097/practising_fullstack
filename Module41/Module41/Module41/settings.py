@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'Module41.urls'
@@ -123,16 +124,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL= 'products.User'
-
-AUTH_USER_MODEL = 'rest_api.User'
+AUTH_USER_MODEL= 'Module41app.User'
 
 
 REST_FRAMEWORK = {
 
 'DEFAULT_AUTHENTICATION_CLASSES': [
 
-'rest_framework_simplejwt.authentication. JWTAuthentication'
+'rest_framework_simplejwt.authentication.JWTAuthentication'
 
 ]
 

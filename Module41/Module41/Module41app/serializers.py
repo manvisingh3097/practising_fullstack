@@ -3,28 +3,6 @@ from .models import *
 from django.contrib.auth import authenticate
 
 
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = ('product' , 'user')
-
-class ProductSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Product
-        fields = ('__all__')
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Orderitem
-        fields = ('__all__')  
-
-class OrderSerializer(serializers.ModelSerializer):
-    order_items = OrderItemSerializer(many=True)
-    class Meta:
-        model = Order
-        fields = ('__all__')
-
 class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField (write_only=True)
@@ -33,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         model = User
 
-        fields = ('name','username','username', 'email')
+        fields = ('username','password')
 
     def create(self, validated_data):
 
